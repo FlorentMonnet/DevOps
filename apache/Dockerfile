@@ -1,3 +1,4 @@
 FROM httpd:2.4
-COPY index.php /usr/local/apache2/htdocs/
+COPY index.html /usr/local/apache2/htdocs/
+COPY httpd.conf /usr/local/apache2/conf/httpd.conf
 EXPOSE 80

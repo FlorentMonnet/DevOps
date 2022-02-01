@@ -1,0 +1,38 @@
+version: '3.3'
+services:
+  java-api:
+    container_name:
+      "java-api"
+    build:
+      ./java/simple-api-main/simple-api
+    networks:
+      - "app-network"
+    depends_on:
+      - "postgres-app"
+
+  postgres-app:
+    container_name:
+      "postgres-app"
+    build:
+      ./postgres
+    networks:
+      - "app-network"
+    volumes:
+      - database_volume:/var/tmp
+
+  apache:
+    container_name:
+      "apache"
+    build:
+      ./apache
+    ports:
+      - "80:80"
+    networks:
+      - "app-network"
+    depends_on:
+      - "java-api"
+
+networks:
+  app-network:
+volumes:
+  database_volume:
