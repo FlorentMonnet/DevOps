@@ -7,10 +7,6 @@ on:
 jobs:
   test-backend:
     runs-on: ubuntu-18.04
-    only:
-      changes:
-        - ./java/simple-api-main/simple-api
-
     steps:
 
       #checkout your github code using actions/checkout@v2.3.3
@@ -32,7 +28,7 @@ jobs:
         run:  mvn -B verify sonar:sonar -Dsonar.projectKey=FlorentMonnet_DevOps -Dsonar.organization=florentmonnet -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{secrets.SONAR_TOKEN }}  --file ./java/simple-api-main/simple-api/pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          
   build-and-push-docker-image:
     needs: test-backend
     # run only when code is compiling and tests are passing
