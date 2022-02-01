@@ -21,4 +21,4 @@ jobs:
 
       #finally build your app with the latest command
       - name: Build and test with Maven
-        run: mvn clean verify -DskipTests
+        run: mvn clean verify -DskipTests --file ./java/simple-api-main/simple-api
