@@ -1,4 +1,4 @@
-# DevOps
+# TP 1
 
 Pour build l'image de postgres : docker build -t postgres-image . 
 Le -t permet de nommer notre l'image et donc de l'utiliser plus facilement par la suite.

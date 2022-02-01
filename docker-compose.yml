@@ -34,7 +34,7 @@ services:
       - "app-network"
     depends_on:
       - "java-api"
-#creation du network pour la comunication entre les 3 applis
+#creation du network pour la communication entre les 3 applis
 networks:
   app-network:
 volumes:
