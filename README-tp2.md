@@ -17,3 +17,5 @@ On utilise ces variables pour éviter que nos données soient récupérées par 
 Si ce n'était pas le cas, à chaque commit sur les branches main et develop, on aurait nos images qui seraient publiées même si on arrive pas à build notre java, ou si les tests ne passent pas. 
 
 En rajoutant cette ligne, le job est exécuté que si  build-and-test-backend est réussit.
+
+test
