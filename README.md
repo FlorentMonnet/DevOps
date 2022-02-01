@@ -65,3 +65,7 @@ Cela permet de gerer tous ses containers au sein d'un seul fichier, cela réduit
 Une fois en place, cela permet de lancer, arrêter, relancer tous les containers en même temps, etc. Cela réduit donc les erreurs potentielles.
 
 **Pourquoi est-ce qu'on met nos images sur Docker hub ?**
+
+Cela permet de les utiliser dans d'autres applis, par exemple, on pourra utiliser nos images dans Github actions. 
+
+Cela permet aussi de garder un suivi de l'évolution de nos images en utilisant des tags différents à chaque push. En cas de problème, il sera donc possible de revenir sur une image fonctionnelle aisément. 
