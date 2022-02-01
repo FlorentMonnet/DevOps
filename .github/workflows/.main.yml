@@ -27,7 +27,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-            
+
       #finally build your app with the latest command
       - name: Build and test with Maven 
         run: mvn clean verify --file ./java/simple-api-main/simple-api
@@ -43,9 +43,6 @@ jobs:
     runs-on: ubuntu-latest
     # steps to perform in job
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Login to DockerHub
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{secrets.DOCKERHUB_TOKEN }}
       
