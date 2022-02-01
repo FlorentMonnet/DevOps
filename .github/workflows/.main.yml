@@ -23,7 +23,10 @@ jobs:
       #finally build your app with the latest command
       - name: Build and test with Maven
         run: mvn clean verify -DskipTests --file ./java/simple-api-main/simple-api
-        # define job to build and publish docker image
+      
+      - name: Check quality
+        run:  mvn -B verify sonar:sonar -Dsonar.projectKey=FlorentMonnet_DevOps -Dsonar.organization=florentmonnet -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
+
   build-and-push-docker-image:
     needs: test-backend
     # run only when code is compiling and tests are passing
@@ -62,3 +65,4 @@ jobs:
           # Note: tags has to be all lower-case
           tags: ${{secrets.DOCKERHUB_USERNAME}}/apache-image:1.0
           push: ${{ github.ref == 'refs/heads/main' }}
+      
