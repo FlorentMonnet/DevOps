@@ -54,10 +54,14 @@ ENTRYPOINT java -jar myapp.jar ---> execute le jar généré au dessus
 
 **Pourquoi a-t-on besoin d'un reverse proxy ?**
 
-Cela sert d'intermediaire entre le client et les ressources d'un serveur, cela permet de gérer les requetes (autoriser,interdir,rediriger). Dans notre cas, cela permet de rediriger des urls vers nos applis, par exemple le /api vers l'api java.
+Cela sert d'intermediaire entre le client et les ressources d'un serveur, cela permet de gérer les requetes (autoriser,interdir,rediriger).
+
+ Dans notre cas, cela permet de rediriger des urls vers nos applis, par exemple le /api vers l'api java, le / vers un fichier html.
 
 **Pourquoi un docker-compose est-il tellement important ?**
 
 Cela permet de gerer tous ses containers au sein d'un seul fichier, cela réduit le nombre de commandes à executer(un seul docker-compose up -d au lieu d'un docker run par container). 
 
 Une fois en place, cela permet de lancer, arrêter, relancer tous les containers en même temps, etc. Cela réduit donc les erreurs potentielles.
+
+**Pourquoi est-ce qu'on met nos images sur Docker hub ?**
