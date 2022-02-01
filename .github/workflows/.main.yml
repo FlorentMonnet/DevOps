@@ -22,7 +22,7 @@ jobs:
 
       #finally build your app with the latest command
       - name: Build and test with Maven
-        run: mvn clean verify -DskipTests --file ./java/simple-api-main/simple-api
+        run: mvn clean verify --file ./java/simple-api-main/simple-api
       
       - name: Check quality
         run:  mvn -B verify sonar:sonar -Dsonar.projectKey=FlorentMonnet_DevOps -Dsonar.organization=florentmonnet -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{secrets.SONAR_TOKEN }}  --file ./java/simple-api-main/simple-api/pom.xml
