@@ -18,4 +18,4 @@ Si ce n'était pas le cas, à chaque commit sur les branches main et develop, on
 
 En rajoutant cette ligne, le job est exécuté que si  build-and-test-backend est réussi.
 
-test
+test2
