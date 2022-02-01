@@ -7,9 +7,8 @@ on:
 jobs:
   test-backend:
     runs-on: ubuntu-18.04
-    defaults:
-      run:
-        working-directory: ./java/simple-api-main/simple-api
+    env:
+      working-directory: ./java/simple-api-main/simple-api
     steps:
 
       #checkout your github code using actions/checkout@v2.3.3
