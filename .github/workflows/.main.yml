@@ -25,7 +25,7 @@ jobs:
         run: mvn clean verify -DskipTests --file ./java/simple-api-main/simple-api
       
       - name: Check quality
-        run:  mvn -B verify sonar:sonar -Dsonar.projectKey=FlorentMonnet_DevOps -Dsonar.organization=florentmonnet -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
+        run:  mvn -B verify sonar:sonar -Dsonar.projectKey=FlorentMonnet_DevOps -Dsonar.organization=florentmonnet -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{secrets.SONAR_TOKEN }}  --file ./java/simple-api-main/simple-api/pom.xml
 
   build-and-push-docker-image:
     needs: test-backend
