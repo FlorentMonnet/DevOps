@@ -1,6 +1,7 @@
 version: '3.3'
 services:
   java-api:
+  # creation d'un container que l'on nomme java-api à partir du Dockerfile dans ./java/simple-api-main/simple-api
     container_name:
       "java-api"
     build:
@@ -9,8 +10,9 @@ services:
       - "app-network"
     depends_on:
       - "postgres-app"
-
+  
   postgres-app:
+  # creation d'un container que l'on nomme postgres-app à partir du Dockerfile dans ./postgres, on utilise un volume pour la persistence des données
     container_name:
       "postgres-app"
     build:
@@ -21,6 +23,7 @@ services:
       - database_volume:/var/tmp
 
   apache:
+  # creation d'un container apache à partir du Dockerfile dans ./apache, on mappe les ports 80:80 pour pouvoir y accèder depuis notre host
     container_name:
       "apache"
     build:
@@ -31,7 +34,7 @@ services:
       - "app-network"
     depends_on:
       - "java-api"
-
+#creation du network pour la comunication entre les 3 applis
 networks:
   app-network:
 volumes:
