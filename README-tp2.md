@@ -21,3 +21,5 @@ En rajoutant cette ligne, le job est exécuté que si  build-and-test-backend es
 ## Pourquoi est-ce qu'on a besoin de push les images ?
 
 Cela permet de mettre à jour nos images si elles ont été modifiées et donc, en cas de déploiment, on pourra utiliser les images à jour ou les précédentes.
+
+test
