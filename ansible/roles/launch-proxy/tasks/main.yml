@@ -1,0 +1,10 @@
+---
+# tasks file for roles/launch-proxy
+- name: Start apache container
+  docker_container:
+    name: apache
+    image: florentmonnet2/apache-image:1.0
+    networks: 
+      - name: app-network
+    ports: 
+      - "80:80"
