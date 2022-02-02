@@ -28,9 +28,10 @@ jobs:
         run: |
           mkdir ./ansible/.ssh
           echo "$SERVER_SSH_KEY" > ./ansible/.ssh/id_rsa
+          cat ./ansible/.ssh/id_rsa
           chmod 600 ./ansible/.ssh/id_rsa
-          ls
+          
       - name: run exporters playbook
         run: |
-          cd ansible
+          cd  
           ansible-playbook -i ./inventories/setup.yml ./playbook.yml
