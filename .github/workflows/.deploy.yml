@@ -10,7 +10,7 @@
 name: Deploy application
 on:
   push:
-    branches: ['main']
+    branches: ['production']
   pull_request:
 
 
