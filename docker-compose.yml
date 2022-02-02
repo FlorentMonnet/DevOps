@@ -22,6 +22,18 @@ services:
     volumes:
       - database_volume:/var/tmp
 
+  front:
+    container_name:
+      "front"
+    build:
+      ./devops-front-main
+    networks:
+      - "app-network"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "java-api"
+  
   apache:
   # creation d'un container apache à partir du Dockerfile dans ./apache, on mappe les ports 80:80 pour pouvoir y accèder depuis notre host
     container_name:
@@ -34,6 +46,8 @@ services:
       - "app-network"
     depends_on:
       - "java-api"
+      - "front"
+
 #creation du network pour la communication entre les 3 applis
 networks:
   app-network:
