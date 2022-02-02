@@ -4,12 +4,12 @@ Pour build l'image de postgres : docker build -t postgres-image .
 Le -t permet de nommer notre l'image et donc de l'utiliser plus facilement par la suite.
 
 Pour créer un network : 
-```
+```docker
 docker network create app-network
 ```
 
 Pour lancer le container contenant postgre : 
-```
+```docker
 docker run -d -e POSTGRES_DB='tp1' -e POSTGRES_USER='root' -e POSTGRES_PASSWORD='root' --name postgres-app --rm -p 5432:5432 --network=app-network  postgres-image
 ```
 On peut aussi lancer un container avec adminer qui nous permet de visiualiser notre base de données.
@@ -24,7 +24,7 @@ Le --network permet d'assigner un réseau au container et donc lui permettre de 
 
 Pour lancer le docker de l'API Backend : 
 
-```
+```docker
 docker run -d --rm --name java-api --network app-network -p 8080:8080 java-image
 ```
 
@@ -35,21 +35,33 @@ On évite de télecharger les dépendances sur le container qui lance l'applicat
 ## Explication du Dockerfile:
 
 ```dockerfile
-# Build
-FROM maven:3.6.3-jdk-11 AS myapp-build  ---> importe l'image de base de maven
-ENV MYAPP_HOME /opt/myapp ---> initialise une variable d'environnement
-WORKDIR $MYAPP_HOME ---> Définit la variable d'env comme espace de travail par défaut
-COPY pom.xml . ---> copie le fichier pom de notre dossier vers l'espace de travail
-RUN mvn dependency:go-offline ---> permet d'éviter le retéléchargement des dépendances quand elles ont déjà été dl
-COPY src ./src copie les sources
-RUN mvn package -DskipTests ---> on lance maven pour build
+# importe l'image de base de maven
+FROM maven:3.6.3-jdk-11 AS myapp-build
 
-# Run
-FROM openjdk:11-jre ---> importe l'image de base de maven
+#initialise une variable d'environnement
+ENV MYAPP_HOME /opt/myapp
+
+#Définit la variable d'env comme espace de travail par défaut
+WORKDIR $MYAPP_HOME
+
+#copie le fichier pom de notre dossier vers l'espace de travail
+COPY pom.xml .
+
+#permet d'éviter le retéléchargement des dépendances quand elles ont déjà été dl
+RUN mvn dependency:go-offline 
+COPY src ./src copie les sources
+
+#on lance maven pour build
+RUN mvn package -DskipTests
+
+# importe l'image de base de maven
+FROM openjdk:11-jre
 ENV MYAPP_HOME /opt/myapp
 WORKDIR $MYAPP_HOME
 COPY --from=myapp-build $MYAPP_HOME/target/*.jar $MYAPP_HOME/myapp.jar
-ENTRYPOINT java -jar myapp.jar ---> execute le jar généré au dessus
+
+#execute le jar généré au dessus
+ENTRYPOINT java -jar myapp.jar
 ```
 
 ## Pourquoi a-t-on besoin d'un reverse proxy ?
