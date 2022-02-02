@@ -26,10 +26,11 @@ jobs:
         env:
           SERVER_SSH_KEY: ${{ secrets.SERVER_RSA }}
         run: |
-          mkdir ../.ssh
-          echo "$SERVER_SSH_KEY" > ../.ssh/id_rsa
-          chmod 600 ../.ssh/id_rsa
+          mkdir ./ansible/.ssh
+          echo "$SERVER_SSH_KEY" > ./ansible/.ssh/id_rsa
+          chmod 600 ./ansible/.ssh/id_rsa
           ls
       - name: run exporters playbook
-        run: |
-          ansible-playbook -i ./TP3/inventories/setup.yaml ./ansible/playbook.yaml
+        run:
+          cd ansible
+          ansible-playbook -i inventories/setup.yml playbook.yml
