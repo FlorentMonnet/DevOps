@@ -31,9 +31,15 @@ jobs:
           chmod 600 ./ansible/.ssh/id_rsa
           ls -al ansible
           
-      - name: run exporters playbook
-        run: |
-          cd ansible
-          pwd
-          ls -al
-          ansible-playbook -i ./inventories/setup.yml ./playbook.yml
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: ./ansible/playbook.yaml
+          key: ${{secrets.SERVER_RSA}}
+          inventory: |
+            all:
+              vars:
+                ansible_user: centos
+              children:
+                prod:
+                  hosts: florent.monnet.takima.cloud
