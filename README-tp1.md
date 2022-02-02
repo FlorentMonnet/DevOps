@@ -10,7 +10,7 @@ docker network create app-network
 
 Pour lancer le container contenant postgre : 
 ```
-docker run -d -e POSTGRES_DB='tp1' -e POSTGRES_USER='root' -e POSTGRES_PASSWORD='root' --name postgres-app --rm -p 5050:5432 --network=app-network  postgres-image
+docker run -d -e POSTGRES_DB='tp1' -e POSTGRES_USER='root' -e POSTGRES_PASSWORD='root' --name postgres-app --rm -p 5432:5432 --network=app-network  postgres-image
 ```
 On peut aussi lancer un container avec adminer qui nous permet de visiualiser notre base de données.
 
@@ -34,7 +34,7 @@ On évite de télecharger les dépendances sur le container qui lance l'applicat
 
 ## Explication du Dockerfile:
 
-```
+```dockerfile
 # Build
 FROM maven:3.6.3-jdk-11 AS myapp-build  ---> importe l'image de base de maven
 ENV MYAPP_HOME /opt/myapp ---> initialise une variable d'environnement

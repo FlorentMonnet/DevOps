@@ -3,8 +3,11 @@
 - name: launch postgres container
   docker_container:
     name: postgres-app
+    # on utilise l'image sur docker hub
     image: florentmonnet2/postgres-image:1.1
+    #on monte notre volume
     volumes:
       - /tmp/data
+    #on relie la bdd à notre réseau
     networks: 
       - name: app-network

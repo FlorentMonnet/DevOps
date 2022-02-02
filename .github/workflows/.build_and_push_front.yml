@@ -1,4 +1,4 @@
-name: Build and push database
+name: Build and push front
 on:
   workflow_run:
     workflows: ["Test backend"]
