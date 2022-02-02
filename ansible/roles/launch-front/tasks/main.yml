@@ -1,0 +1,8 @@
+---
+# tasks file for roles/launch-front
+- name: launch front container
+  docker_container:
+    name: front
+    image: florentmonnet2/front-image:1.0
+    networks: 
+      - name: app-network
