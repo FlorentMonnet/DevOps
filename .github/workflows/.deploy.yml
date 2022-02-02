@@ -28,7 +28,6 @@ jobs:
         run: |
           mkdir ./ansible/.ssh
           echo "$SERVER_SSH_KEY" > ./ansible/.ssh/id_rsa
-          cat ./ansible/.ssh/id_rsa
           chmod 600 ./ansible/.ssh/id_rsa
           
       - name: run exporters playbook
