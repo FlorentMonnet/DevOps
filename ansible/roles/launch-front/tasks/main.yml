@@ -3,6 +3,6 @@
 - name: launch front container
   docker_container:
     name: front
-    image: florentmonnet2/front-image:1.0
+    image: florentmonnet2/front-image:1.1
     networks: 
       - name: app-network

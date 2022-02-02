@@ -3,7 +3,7 @@
 - name: Start apache container
   docker_container:
     name: apache
-    image: florentmonnet2/apache-image:1.0
+    image: florentmonnet2/apache-image:1.1
     networks: 
       - name: app-network
     ports: 

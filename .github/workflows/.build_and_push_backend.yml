@@ -1,0 +1,29 @@
+name: Build and push backend
+on:
+  workflow_run:
+    workflows: ["Test backend"]
+    types:
+      - completed
+    branches: ['main']
+  pull_request:
+jobs:
+  build-and-push-backend:
+    # run only when code is compiling and tests are passing
+    runs-on: ubuntu-latest
+    # steps to perform in job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build image and push backend
+        uses: docker/build-push-action@v2
+        with:
+          # relative path to the place where source code with Dockerfile is located
+          context: ./java/simple-api-main/simple-api
+          # Note: tags has to be all lower-case
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/backendapi-image:1.1
+          push: ${{ github.ref == 'refs/heads/main' }}
+      
