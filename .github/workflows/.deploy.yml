@@ -29,6 +29,7 @@ jobs:
           mkdir ./.ssh
           echo "$SERVER_SSH_KEY" > ./.ssh/id_rsa
           chmod 600 ./.ssh/id_rsa
+          pwd
       - name: run exporters playbook
         run: |
           ansible-playbook -i ./TP3/inventories/setup.yaml ./ansible/playbook.yaml
