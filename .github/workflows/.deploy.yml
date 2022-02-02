@@ -22,13 +22,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set ansible config secrets
-        env:
-          SERVER_SSH_KEY: ${{ secrets.SERVER_RSA }}
-        run: |
-          mkdir ./.ssh
-          echo "$SERVER_SSH_KEY" > ./.ssh/id_rsa
-          chmod 600 ./.ssh/id_rsa
-      - name: run exporters playbook
-        run: |
-          ansible-playbook -i ./TP3/inventories/setup.yaml ./ansible/playbook.yaml
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: ./ansible/playbook.yaml
+          key: ${{secrets.SERVER_RSA}}
+          inventory: |
+            all:
+              vars:
+                ansible_user: centos
+              children:
+                prod:
+                  hosts: florent.monnet.takima.cloud
