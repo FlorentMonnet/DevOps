@@ -21,15 +21,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Set ansible config secrets
-        env:
-          SERVER_SSH_KEY: ${{ secrets.SERVER_RSA }}
-        run: |
-          mkdir ./ansible/.ssh
-          echo "$SERVER_SSH_KEY" > ./ansible/.ssh/id_rsa
-          chmod 600 ./ansible/.ssh/id_rsa
-          ls -al ansible
           
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
