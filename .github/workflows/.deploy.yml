@@ -34,4 +34,5 @@ jobs:
       - name: run exporters playbook
         run: |
           cd ansible
+          pwd
           ansible-playbook -i ./inventories/setup.yml ./playbook.yml
