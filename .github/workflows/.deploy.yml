@@ -31,6 +31,6 @@ jobs:
           chmod 600 ./ansible/.ssh/id_rsa
           ls
       - name: run exporters playbook
-        run:
+        run: |
           cd ansible
-          ansible-playbook -i inventories/setup.yml playbook.yml
+          ansible-playbook -i ./inventories/setup.yml ./playbook.yml
