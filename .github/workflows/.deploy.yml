@@ -1,10 +1,6 @@
 name: Deploy application
 on:
-  workflow_run:
-    workflows: ["Build and push backend"]
-    types:
-      - completed
-    branches: ['production']
+  branches: ['production']
   pull_request:
 
 jobs:
