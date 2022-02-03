@@ -4,7 +4,7 @@ on:
     workflows: ["Test backend"]
     types:
       - completed
-    branches: ['main', 'develop']
+    branches: ['main', 'develop', 'production']
   pull_request:
 jobs:
   build-and-push-backend:
