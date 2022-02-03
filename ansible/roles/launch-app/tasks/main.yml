@@ -2,11 +2,7 @@
 # tasks file for roles/launch-app
 - name: launch app container
   docker_container:
-    name: java-api-1
-    image: florentmonnet2/backendapi-image:1.1
-    networks: 
-      - name: app-network
-    name: java-api-2
+    name: java-api
     image: florentmonnet2/backendapi-image:1.1
     networks: 
       - name: app-network
